@@ -1,0 +1,14 @@
+<div class="home-container">
+    <h5>{{room_count}} rooms Available</h5>
+    <a href="{% url 'base:create' %}">Create Room</a>
+    <h3>Browse Topic</h3>
+    <hr>
+      <div>
+        <a href="{% url 'home' %}">ALL</a>
+      </div>
+        {% for topic in topics %}
+        <ul>
+          <li><a href="{% url 'home' %}?q={{topic.name}}">{{topic.name}}</a></li>
+        </ul>
+        {% endfor %}
+</div>

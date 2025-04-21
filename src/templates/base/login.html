@@ -1,0 +1,39 @@
+{% include 'navbar.html' %}
+
+{% block content %}
+
+{% if page == 'base:login' %}
+<div>
+    <form method="Post" action="">
+     {% csrf_token %}
+     <label>Username:</label>
+     <input type="text" name="username">
+     <label>Password:</label>
+     <input type="password" name="password">
+     <input type="submit" value="submit"/>
+    </form>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+       <li>{{message}}</li>
+       {% endfor %}
+    </ul>
+    {% endif %}
+    <p>Haven't signed up yet?</p>
+    <a href="{% url 'base:register' %}">Sign up</a>
+</div>
+
+{% else %}
+<div>
+    <form method="post" action="">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="register"/>
+    </form>
+    <p>Already signed up yet?</p>
+    <a href="{% url 'base:login' %}">Login</a>
+</div>
+
+{% endif %}
+
+{% endblock content %}
